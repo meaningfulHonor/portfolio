@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko-kr">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+
+<style type="text/css">
+	div#board{
+	width: 450px;
+	height: 150px; 
+	}
+	
+	ul#list {
+		display : flex;
+		justify-content : space-between;
+	}
+</style>
+</head>
+<body>
+
+<h1>새로운 홈페이지에 오신 것을 환영합니다.</h1>
+
+<div id="board">
+	<ul id="list">
+		<li><a id="login_btn" th:href="@{/login}">첫째</a></li>
+		<li>둘째</li>
+		<li>셋째</li>
+		<li>넷째</li>
+		<li>다섯째</li>
+	</ul>
+</div>
+
+</body>
+</html>

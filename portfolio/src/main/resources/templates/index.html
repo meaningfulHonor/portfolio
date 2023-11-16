@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="ko-kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- layout -->
+    <div layout:fragment="content" class="main_sect_pnl">
+		
+        <div id="wrap">
+		
+            <!-- article -->
+            <article id="weekly_best_product_box">
+
+                        <!-- Swiper -->
+                        <div class="swiper soccer slide">
+                            <div id="slide1" class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="#" th:src="@{'/thumbnails/soccer/13004_XL.jpg'}"></div>
+                                <div class="swiper-slide"><img alt="#" th:src="@{'/thumbnails/soccer/13537_XL.jpg'}"></div>
+                                <div class="swiper-slide"><img alt="#" th:src="@{'/thumbnails/soccer/11313_XL.jpg'}"></div>
+                                <div class="swiper-slide"><img alt="#" th:src="@{'/thumbnails/soccer/13527_XL.jpg'}"></div>
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                            <!-- Add Navigation -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+
+                        <!-- Swiper JS -->
+                        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+                        <!-- Initialize Swiper -->
+                        <script>
+   							var swiper = new Swiper(".soccer", {
+      							spaceBetween: 30,
+      							effect: "fade",
+      							centeredSlides: true,
+      							autoplay: {
+        						delay: 2500,
+        						disableOnInteraction: false,
+      						},
+      						pagination: {
+        						el: ".swiper-pagination",
+        						clickable: true,
+      						},
+      						navigation: {
+        						nextEl: ".swiper-button-next",
+        						prevEl: ".swiper-button-prev",
+      							},
+    						});
+  						</script>
+                   
+       
+            </article>
+            <!-- //article -->
+
+            <!-- boards area -->
+            <div id="board_box">
+                <article id="notice_box">
+                    <h3 id="notice_title">&nbsp; ※ Notice </h3><a class="more_board" th:href="@{/notice/list.do}">더보기</a>
+                    
+                    <div id="notice_pnl">
+                        <table>
+                            <tbody>
+                            	<tr class="notice_num" th:each="notice, st:${notices}">
+                            		<td>
+                            			<a th:href="@{'/notice/view.do/' + ${notice.noticeNum}}">
+                            				<span th:text="${notice.noticeSubject}"></span>
+                            			</a>
+                            		</td>
+                            	</tr>
+                            </tbody>
+                        </table> 
+                    </div>
+                </article>
+                <article id="qna_box">
+                    <h3 id="qna_title">&nbsp; ※ Q &#38; A</h3><a class="more_board" th:href="@{/board/list.do}">더보기</a>
+                    
+                    <div id="qna_pnl">
+                        <table>
+                            <tbody>
+                            	<tr class="notice_num" th:each="qna, st:${qnas}">
+                            		<td>
+                            			<a th:href="@{'/board/view.do/' + ${qna.boardNum}}">
+                            				<span th:text="${qna.boardSubject}"></span>
+                            			</a>
+                            		</td>
+                            	</tr>
+                            </tbody>
+                        </table> 
+                        
+                    </div>
+                </article>
+            </div>
+            <!-- //boards area -->
+
+        </div> <!-- // #wrap -->
+
+
+    </div> <!-- // layout:content -->
+
+</body>
+
+</html>

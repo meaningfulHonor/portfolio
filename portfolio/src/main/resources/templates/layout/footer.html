@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  lang="ko-kr">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:fragment="footer">
+
+    	<div class="footer_sect_pnl">
+        	
+        	<div class="col call_time_pnl">
+        		<h3 id="call_fld">
+        			<span class="material-symbols-outlined">
+        				deskphone
+					</span>
+					<span>02-1231-1234</span>
+				</h3>
+        		<ul class="time_fld">
+        			<li>AM 09:00 ~ PM 6:00</li>
+					<li>LUNCH PM 12:00 ~ PM 1:00</li>
+					<li> ※ HOLIDAY OFF</li>
+        		</ul>
+        	</div>
+        	
+        	<div class="col info_pnl">
+        		<ul class="info_fld">
+        			<li>
+        				<b>회사명 : </b>
+        				<span>풋볼러 Footballer</span>
+        			</li>
+        			<li>
+        				<b>이메일 : </b>
+        				<span>ezen114@ezencom.org</span>
+        			</li>
+        			<li>
+        				<b>주  소 : </b>
+        				<span>서울특별시 구로구 공원로 83, 4층</span>
+        			</li>
+        		</ul>
+        	</div>
+        	
+        	<div class="col bank_pnl">
+        		<ul class="bank_fld">
+        			<li>
+        				<span>신한은행</span>
+        				<span>110-111-11111</span>
+        			</li>
+        			<li>
+        				<span>국민은행</span>
+        				<span>123-45-678900</span>
+        			</li>
+        			<li><span>예 금 주 : 홍길동</span></li>
+        		</ul>
+        	</div>
+        	
+    	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>itemPage</title>
+    <!-- <link rel="stylesheet" href="./itemPage.css"> -->
+    <link th:href="@{/css/itemPage.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- layout -->
+    <div layout:fragment="content" class="main_sect_pnl">
+		
+		<!-- 인자 : [[${product}]]
+		 -->
+        <div class="product">
+            <div class="col product_img">
+                <img th:src="@{'/thumbnails/replica/' + ${replica.prdImg}}" alt="thumbnail">
+            </div>
+            <div class="col product_info">
+                <h2 id="name" th:text="${replica.prdName}"></h2>
+                <div class="detail_info">
+                    <table id="detail_info_table">
+                        <tbody>
+                            <tr>
+                                <th id="th_maker">제조사</th>
+                                <td id="maker"><span th:text="${replica.company}"></span></td>
+                            </tr>
+                            <tr>
+                                <th id="th_code">상품코드</th>
+                                <td id="code"><span th:text="${replica.prdCode}"></span></td>
+                            </tr>
+                            <tr>
+                                <th id="th_price">가격</th>
+                                <td id="price"><span th:utext="|${#numbers.formatInteger(replica.prdPrice, 3, 'COMMA')}원|"></span></td>
+                            </tr>
+                            <tr>
+                                <th id="th_qauntity">수량</th>
+                                <td id="qauntity">
+                                    <form action="#">
+                                        <select name="qauntity" id="select_qauntity" style="height: 30px;">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12이상 단체</option>
+                                        </select>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p id="group_notice">※ 12개 초과의 단체주문은 12로 신청 후 QnA란에 남겨주세요.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn_fld">
+            <input type="button" class="btn cart" value="장바구니에 담기">
+            <input type="submit" class="btn order" value="바로 결제하기">
+        </div>
+
+    </div>
+    <!-- // layout -->
+</body>
+
+</html>

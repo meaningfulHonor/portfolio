@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="ko-kr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login box</title>
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
+    <script th:inline="javascript" th:if="${error == 'true'}">
+        	alert([[${msg.message}]]);
+    </script>
+</head>
+
+<body>
+    
+    <!-- layout -->
+    <div layout:fragment="content" class="main_sect_pnl">
+		
+	<div id="wrap">
+    <!-- 1. 로그인 박스 시작 -->
+    <div id="login_box">
+	
+        <form id="login_frm" method="post" th:action="@{'/login'}">
+            <div id="logo_box">
+            	<h3>LogIn</h3>
+            </div>
+            <!-- 2. 아이디 필드 섹션 시작 -->
+            <div id="id_box">
+                <!-- 
+			※ 작성조건
+			1. 타입 : text
+			2. id : username
+			3. name : username
+			4. 최대 입력 글자수 : 20
+			5. 내부 초기값 : 아이디
+			 -->
+                <input type="text" id="username" name="username" maxlength="20" placeholder="아이디" />
+
+                <!-- 아이디 에러 메시징 -->
+                <div id="id_fld_err_pnl">
+                </div>
+
+            </div>
+            <!-- // 아이디 필드 섹션 -->
+
+            <!-- 3. 패쓰워드 필드 섹션 -->
+            <div id="pw_box">
+                <!-- 
+			※ 작성조건
+			1. 타입 : password
+			2. id : password
+			3. name : password
+			4. 최대 입력 글자수 : 20
+			6. 내부 초기값 : 비밀번호			
+			 -->
+                <input type="password" id="password" name="password" maxlength="20" placeholder="비밀번호" />
+
+
+                <!-- 패쓰워드 에러 메시지 -->
+                <div id="pw_fld_err_pnl">
+                </div>
+            </div>
+            <!-- // 패쓰워드 필드 섹션 -->
+
+            <!-- 4. 전송 필드 섹션 시작 -->
+            <div id="submit_box">
+                <!-- 
+			1. type : submit
+			2. id : login_btn
+			3. 라벨 : 로그인
+			 -->
+                <input type="submit" id="login_btn" value="로그인" />
+
+            </div>
+            <!-- // 전송 필드 섹션 -->
+
+            <!-- 5. 가입 필드 섹션 시작 -->
+            <div id="join_box">
+                <!-- 
+			1. type : button
+			2. id : join_btn
+			3. 라벨 : 회원가입
+			 -->
+                <input type="button" id="join_btn" th:onclick="|location.href='@{/member/join.do}'|" value="회원가입" />
+
+            </div>
+            <!-- // 가입 필드 섹션 -->
+
+        </form>
+
+    </div>
+    <!-- // 로그인 박스 -->
+    </div> <!-- // #wrap -->
+	
+	</div> <!-- // layout -->
+</body>
+
+</html>

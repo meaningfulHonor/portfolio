@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+div#wrap{
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    height: 90vh;
+    max-width: 970px;
+    min-width: 780px;
+    margin: auto;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+article#weekly_best_product_box{
+    height: 65%;
+    margin-bottom: 30px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.swiper-slide img {
+    display: block;
+    width: 56%;
+    height: 90%;
+    object-fit: cover;
+}
+    
+div#board_box{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+article#notice_box,article#qna_box{
+    height: 200px;
+    width: 47%;
+    border: 1px solid black;
+    position: relative;
+    border-radius: 15px;
+}
+
+article#notice_box a, article#qna_box a{
+    text-decoration: none;
+}
+
+article#notice_box h3, article#qna_box h3{
+    font-size: 1.6rem;
+    margin: 7px 0;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+#board_box article a.more_board{
+    font-size: 1rem;
+    position: absolute;
+    right: 5%;
+    top: 10%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#board_box article div ul{
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    
+}
+
+div#board_box article div#notice_pnl, div#board_box article div#qna_pnl{
+    text-decoration: none;
+	padding: 5px 20px;
+}
+
+div#board_box article div#notice_pnl tr, div#board_box article div#qna_pnl tr{
+	display: block;
+	font-size: 1.1rem;
+	color: black;
+	margin-bottom: 12px;
+}

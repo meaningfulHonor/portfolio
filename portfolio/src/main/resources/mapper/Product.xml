@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Product">
+
+	<!-- 개별 상품 등록 -->
+	<insert id="insertProduct" parameterType="com.javateam.portfolio.domain.ProductVO">
+		INSERT INTO product_tbl VALUES (product_tbl_seq.nextval, 
+									#{prdCode},
+									#{prdNum},
+									#{prdName},
+									#{prdPrice},
+									#{prdImg},
+									#{imgPath},
+									#{company})
+	</insert>
+	
+	<!-- Replica 개별 상품 등록 -->
+	<insert id="insertReplica" parameterType="com.javateam.portfolio.domain.ReplicaVO">
+		INSERT INTO replica_tbl VALUES (replica_tbl_seq.nextval, 
+									#{prdCode},
+									#{prdNum},
+									#{prdName},
+									#{prdPrice},
+									#{prdImg},
+									#{imgPath},
+									#{company})
+	</insert>
+		
+</mapper>
