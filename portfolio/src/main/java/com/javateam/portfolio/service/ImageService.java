@@ -29,7 +29,7 @@ public class ImageService {
     private final Path rootLocation;
     
     // application.properties 파일 경로 정보
-    // imageUpload.path=D:/Ssong/portfolio/upload/image/ 등록/읽어오기 
+    // imageUpload.path=D:/Ssong/portfolio2/upload/image/ 등록/읽어오기 
     @Autowired
     public ImageService(@Value("${imageUpload.path}") String uploadPath) {
        
@@ -115,6 +115,8 @@ public class ImageService {
             if (file.isEmpty()) {
                 throw new Exception("업로드 파일이 비어 있어서 저장에 실패하였습니다 : " + file.getOriginalFilename());
             }
+            
+            log.info("rootLocation : {}", rootLocation);
             
             String saveFileName = FileUploadUtil.fileSave(rootLocation.toString(), file);
             

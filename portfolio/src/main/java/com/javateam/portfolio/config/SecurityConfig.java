@@ -47,7 +47,7 @@ public class SecurityConfig {
 	public WebSecurityCustomizer webSecurityCustomizer() {
 		return (web) -> web.ignoring().antMatchers("/css/**", "/webjars/**", 
 				"/images/**", "/js/**", "/v2/api-docs", "/swagger-resources/**", "/swagger/**", "/swagger-ui.html",
-				"/axios/**", "/bootstrap-icons/**", "/bootstrap/**", "/summernote/**");	}
+				"/axios/**", "/bootstrap-icons/**", "/bootstrap/**", "/summernote/**", "/jquery/**");	}
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -77,10 +77,11 @@ public class SecurityConfig {
            			 "/board/replyWrite.do", "/board/replyUpdate.do", 
            			 "/board/getRepliesAll.do", "/board/replyDelete.do",
            			 "/board/deleteProc.do").authenticated()
-				.antMatchers("/notice/list.do", "/notice/view.do", "/notice/image", "/notice/image/**",
+				.antMatchers("/notice/list.do", "/notice/view.do/**", "/notice/image", "/notice/image/**",
 					 "/notice/searchList.do").permitAll()
 				.antMatchers("/notice/write.do", "/notice/writeProc.do", "/notice/update.do", "/notice/updateProc.do",
            			 "/notice/deleteProc.do").hasAuthority("ROLE_ADMIN")
+				.antMatchers("/board/replyWrite2.do").permitAll()
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()

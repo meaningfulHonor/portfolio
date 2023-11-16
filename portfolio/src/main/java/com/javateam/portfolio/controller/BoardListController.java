@@ -37,9 +37,9 @@ public class BoardListController {
 //		
 //		boardList = boardService.selectBoardsByPaging(currPage, limit);
 		
-		// 10.26 (2) : 총 게시글 수 (댓글들을 제외한)
+		// 총 게시글 수 (댓글들을 제외한)
 		int listCount = boardService.selectBoardsCountWithoutReplies();
-		// 10.26 (2) : 댓글들 제외
+		// 댓글들 제외
 		boardList = boardService.selectBoardsByPagingWithoutReplies(currPage, limit);
 		
 		// 총 페이지 수

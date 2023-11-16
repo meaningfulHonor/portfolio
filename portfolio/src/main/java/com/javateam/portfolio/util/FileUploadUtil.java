@@ -43,7 +43,15 @@ public class FileUploadUtil {
 		
 		String savePath = calcPath(uploadPath);
 		
+		// 11.16 경로 에러 패치 : 경로와 파일명 사이 "\" 추가
 		File target = new File(uploadPath + savePath + saveFileName);
+		
+		log.info("target : {}", (uploadPath + savePath + saveFileName));
+		log.info("uploadPath : {}", uploadPath);
+		log.info("savePath : {}", savePath);
+		log.info("saveFileName : {}", saveFileName);
+		
+		
 		
 		FileCopyUtils.copy(file.getBytes(), target);
 		
@@ -76,7 +84,8 @@ public class FileUploadUtil {
 			Calendar cal = Calendar.getInstance();
 			String yearPath = File.separator + cal.get(Calendar.YEAR);
 			String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
-			String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+			// 11.16 경로 에러 패치: File.separator 추가
+			String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE))+ File.separator;
 			
 			makeDir(uploadPath, yearPath, monthPath, datePath);
 			

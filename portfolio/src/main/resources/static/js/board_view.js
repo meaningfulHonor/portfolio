@@ -13,7 +13,6 @@ function getAllReplies(boardNum) {
 			let resData = response.data;
 			console.log("response.data : ", resData);
 
-			// 10.26 (2)
 			// 전체 댓글 현황 리턴 확인
 			console.log("전체 댓글 수 : ", resData.length);
 			
@@ -171,7 +170,7 @@ function writeReply(boardNum, boardWriter) {
  			} else { 
 			 
  				// 전송			  
- 				axios.post('/portfoilo/board/replyWrite.do', 
+ 				axios.post('/portfolio/board/replyWrite.do', 
  					{
 						boardNum : boardNum,
 						boardContent : replyWriteForm.value,

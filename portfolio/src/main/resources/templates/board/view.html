@@ -20,11 +20,11 @@
 
 <link rel="stylesheet" th:href="@{/css/boardView.css}">
 
-<!-- 10.26 : 댓글 전송용  -->
+<!-- 댓글 전송용  -->
 <!-- AJAX library axios -->
 <script th:src="@{'/axios/1.5.0/dist/axios.min.js'}"></script>
 
-<!-- 10.27 : 코드 다량 발생 → 별도 파일화 -->
+<!-- 코드 다량 발생 → 별도 파일화 -->
 <script th:src="@{'/js/board_view.js'}"></script>
 
 <!-- 댓글 제어 -->
@@ -102,55 +102,7 @@ window.onload = () => {
 					</li>
 				</ul>
 			</div>
-			<!-- <table class="view_board"> -->
-			
-				<!-- <tr>
-					<th scope="col" class="col-2">번  호</th>
-					<td th:text="${board.boardNum}" class="col-10"></td>
-				</tr>
 
-				<tr>
-					<th scope="col">작성자</th>
-					<td th:utext="${board.boardWriter}"></td>
-				</tr>
-
-				<tr class="title">
-					<th scope="col">제  목</th>
-					<td th:utext="${board.boardSubject}"></td>
-				</tr> 
-					<tr>
-						<th scope="col">문의 내용</th>
-					</tr>
-					<tr>							
-					<td>
-						<div id="boardContentDiv" th:utext="${board.boardContent}" contenteditable="false"></div>
-					</td>
-				</tr>
--->
-				<!-- <tr>
-					<th scope="col">첨부파일</th>
-					<td>
-						<span th:if="${#strings.isEmpty(board.boardFile)}">첨부 파일 없음</span>
-						
-						<a th:href="@{'/board/download/'+${board.boardOriginalFile}+'/'+${board.boardFile}}" 
-						   th:if="${!#strings.isEmpty(board.boardOriginalFile)}" 
-						   th:utext="${board.boardOriginalFile}"></a> 
-					</td>
-				</tr>  -->
-				
-				<!-- <tr>
-					<th scope="col">등록일</th>
-					<td th:utext="${#dates.format(board.boardDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-				</tr> -->
-
-			<!-- </table> -->
-			
-			<!-- -------------------------------------------------------------------------- -->
-			
-			
-			<!-- 댓글 영역  -->
-			<!-- <div id="reply_pnl" class="mx-auto my-3 border border-top border-primary-subtle" style="width: 800px;"> -->
-			
 			<div id="reply_pnl" class="reply_pnl">
 			 
 				<!-- 개별 게시글 전체 댓글 리스트 -->

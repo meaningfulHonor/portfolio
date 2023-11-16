@@ -30,10 +30,28 @@ public class BoardReplyRestController {
 	@Autowired
 	BoardService boardService; 
 
+	@GetMapping("replyWrite2.do")
+	// public ResponseEntity<Boolean> replyWrite(@RequestBody Map<String, Object> map) {
+	// 댓글을 작성하면서 즉시 현재까지의 댓글들 현황을 집계하여 리턴
+	public ResponseEntity<BoardVO> replyWrite2(@RequestBody Map<String, Object> map) { 
+		
+		log.info("replyWrite.do : boardNum={}, boardContent={}", map.get("boardNum"), map.get("boardContent"));
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
+		
+		ResponseEntity<BoardVO> responseEntity = null;
+		
+		responseEntity = new ResponseEntity<>(new BoardVO(map), HttpStatus.OK); 
+		
+		return responseEntity;
+	}
+	
+	
 	@PostMapping("replyWrite.do")
 	// public ResponseEntity<Boolean> replyWrite(@RequestBody Map<String, Object> map) {
 	// 댓글을 작성하면서 즉시 현재까지의 댓글들 현황을 집계하여 리턴
-	public ResponseEntity<List<BoardVO>> replyWrite(@RequestBody Map<String, Object> map) { // 10.26
+	public ResponseEntity<List<BoardVO>> replyWrite(@RequestBody Map<String, Object> map) { 
 		
 		log.info("replyWrite.do : boardNum={}, boardContent={}", map.get("boardNum"), map.get("boardContent"));
 		
@@ -72,7 +90,7 @@ public class BoardReplyRestController {
 				// 댓글 등록 성공 : 성공 코드(200)
 				// responseEntity = new ResponseEntity<>(true, HttpStatus.OK);
 				
-				// 원글에 따른 전체 댓글 현황 목록(리스트) 리턴(클라리언트에 전송)
+				// 원글에 따른 전체 댓글 현황 목록(리스트) 리턴(클라이언트에 전송)
 				responseEntity = new ResponseEntity<>(replyList, HttpStatus.OK); 
 				
 			} else {

@@ -102,111 +102,25 @@ window.onload = () => {
 					</li>
 				</ul>
 			</div>
-			<!-- <table class="view_notice"> -->
-			
-				<!-- <tr>
-					<th scope="col" class="col-2">번  호</th>
-					<td th:text="${notice.noticeNum}" class="col-10"></td>
-				</tr>
-
-				<tr>
-					<th scope="col">작성자</th>
-					<td th:utext="${notice.noticeWriter}"></td>
-				</tr>
-
-				<tr class="title">
-					<th scope="col">제  목</th>
-					<td th:utext="${notice.noticeSubject}"></td>
-				</tr> 
-					<tr>
-						<th scope="col">문의 내용</th>
-					</tr>
-					<tr>							
-					<td>
-						<div id="noticeContentDiv" th:utext="${notice.noticeContent}" contenteditable="false"></div>
-					</td>
-				</tr>
--->
-				<!-- <tr>
-					<th scope="col">첨부파일</th>
-					<td>
-						<span th:if="${#strings.isEmpty(notice.noticeFile)}">첨부 파일 없음</span>
-						
-						<a th:href="@{'/notice/download/'+${notice.noticeOriginalFile}+'/'+${notice.noticeFile}}" 
-						   th:if="${!#strings.isEmpty(notice.noticeOriginalFile)}" 
-						   th:utext="${notice.noticeOriginalFile}"></a> 
-					</td>
-				</tr>  -->
-				
-				<!-- <tr>
-					<th scope="col">등록일</th>
-					<td th:utext="${#dates.format(notice.noticeDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-				</tr> -->
-
-			<!-- </table> -->
-			
-			<!-- -------------------------------------------------------------------------- -->
-			
-			
-			<!-- 댓글 영역  -->
-			<!-- <div id="reply_pnl" class="mx-auto my-3 border border-top border-primary-subtle" style="width: 800px;"> -->
-			
+		
 			<div id="reply_pnl" class="reply_pnl">
 			 
-				<!-- 개별 게시글 전체 댓글 리스트 -->
-				<!-- <div id="reply_list_pnl" class="bg-light my-3">
-				</div> -->
-				 
-				<!-- 댓글 등록/수정 -->
-				<!-- <div id="reply_write_update_pnl" class="my-3">
-				 
-					<textarea id="reply_write_form" name="reply_write_form" 
-							  class="form-control border border-primary"
-							  maxlength="100"
-							  placeholder="댓글을 100자이내로 작성하십시오"></textarea>
-				   
-				</div> -->
-				 
-				<!-- 댓글 메뉴 -->
-				<!-- 정렬 교정 -->
+			
 				<div class="reply_btn_pnl">
 					
-					<!-- 댓글 패쓰워드 -->
-					<!-- 정렬 교정 -->
+					<!-- 패쓰워드 -->
 					<input type="text" th:id="${'notice_pass_' + notice.noticeNum}" 
 						   th:name="${'notice_pass_' + notice.noticeNum}" required 
 						   placeholder="비밀번호"
-						   class="notice_password">
-					
-					<!-- 댓글 메뉴 -->
-					<!-- <div class="reply_menu_pnl">
-					<a href="#" th:id="${'reply_write_btn_' + notice.noticeNum}" class="btn insert">댓글 등록</a>
-					<a href="#" th:id="${'reply_update_btn_' + notice.noticeNum}" class="btn update">댓글 수정</a>
-					<a href="#" th:id="${'reply_delete_btn_' + notice.noticeNum}" class="btn delete" sec:authorize="hasRole('ROLE_ADMIN')">댓글 삭제</a>
-					</div> -->
+						   class="notice_password"
+						   sec:authorize="hasRole('ROLE_ADMIN')">
+		
 				</div>	
 			
 			</div>
-			<!--// 댓글 영역  -->
-			
-			<!-- -------------------------------------------------------------------------- -->
-			<!-- 
-			<div class="notice_menu_pnl">
-				
-				글수정 링크 추가
-				<a type="button" class="btn btn-primary" 
-					th:href="@{'/notice/update.do?noticeNum='+${notice.noticeNum}}">글수정</a>
-				(원)글삭제 링크 추가	
-				<a type="button" class="btn btn-primary ms-2" 
-				    th:id="${'notice_delete_btn_' + notice.noticeNum}"
-					href="#">글삭제</a>
-				&nbsp;
-				<a type="button" class="btn btn-primary" th:href="@{/notice/list.do}">게시글 목록</a>
-			</div>
-		 -->
 		
 		</div>
-		<!--// content -->
+		<!--// content_sect_pnl -->
 
 		<div class="space"></div>
 	</div>
