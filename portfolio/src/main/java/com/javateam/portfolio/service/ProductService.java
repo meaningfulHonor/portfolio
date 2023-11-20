@@ -13,8 +13,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.javateam.portfolio.dao.MemberDAO;
 import com.javateam.portfolio.dao.ProductDAO;
 import com.javateam.portfolio.dao.ProductImpl;
+import com.javateam.portfolio.domain.MemberDTO;
 import com.javateam.portfolio.domain.ProductVO;
 import com.javateam.portfolio.domain.ReplicaVO;
 
@@ -35,6 +37,9 @@ public class ProductService {
 	
 	@Autowired
 	DataSourceTransactionManager txManager;
+	
+	@Autowired
+	MemberDAO memberDAO;
 	
 	/**
 	 * 개별 상품 등록
@@ -132,5 +137,12 @@ public class ProductService {
 		//return (int)impl.countByPrdNum(1); // 
 		return (int)impl.count();
 	} //
+	
+	@Transactional(readOnly = true)
+	public MemberDTO selectMember(String id) {
+		log.info("로그인 id : {} ", memberDAO.selectMember(id));
+		return memberDAO.selectMember(id);
+	}
+	
 	
 }

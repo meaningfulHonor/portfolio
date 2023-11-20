@@ -48,6 +48,7 @@ article#notice_box,article#qna_box{
     border: 1px solid black;
     position: relative;
     border-radius: 15px;
+    color: black;
 }
 
 article#notice_box a, article#qna_box a{
@@ -87,4 +88,8 @@ div#board_box article div#notice_pnl tr, div#board_box article div#qna_pnl tr{
 	font-size: 1.1rem;
 	color: black;
 	margin-bottom: 12px;
+}
+
+div#board_box article div#notice_pnl tr td a span{
+	color:black;
 }

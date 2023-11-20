@@ -27,12 +27,13 @@ function getAllReplies(boardNum) {
 				/* ------------------------------------------------------------------------------------------------------ */
 				
 				// 개별 게시글 동적 패널
-				replyData = `<div id="reply_${reply.boardNum}" class="border-bottom border-dark-1 bg-light w-100 ps-4">
+				replyData = `<div id="reply_${reply.boardNum}" class="reply_data" 
+								style="display: flex; align-items: center; background-color: rgba(0, 0, 0, .1); border-radius: 5px; justify-content: space-around; margin-top: 7px;">
 								
-								<div class="d-flex flex-row py-2">
+								<div class="reply_data_pnl" style="display: flex;">
 								
 									<!-- 체크 박스 -->
-									<div class="d-flex align-items-center me-2">
+									<div class="reply_check_box">
 									
 										<input class="form-check-input" type="checkbox" id="reply_check_${reply.boardNum}">
 										
@@ -40,30 +41,18 @@ function getAllReplies(boardNum) {
 									<!--// 체크 박스 -->
 									
 									<!-- 사람 아이콘 -->
-									<div class="me-2">
+									<!-- <div class="me-2">
 									
 										<i class="bi bi-person-circle" style="font-size:3em; color:#ccc"></i>
 										
-									</div>
+									</div> -->
 									<!--// 사람 아이콘 -->
 									
-									<!-- 작성자 : bootstrap badge(뱃지) 적용 -->
-									<!-- 참고 : https://getbootstrap.com/docs/5.3/components/badge/#positioned -->
-									
 									<!--  실제 댓글 작성자 파악을 위해 id 등록 -->
-									<div id="reply_actual_writer_${reply.boardNum}" class="d-flex align-items-center ms-1 mt-1">
+									<div id="reply_actual_writer_${reply.boardNum}" class="board_writer_fld">
 									
 										<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->	
-										<button id="reply_writer_${reply.boardWriter}" type="button" class="btn btn-info position-relative">
-											
-											${reply.boardWriter}
-							
-										  	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-										    	작성자
-										    	<span class="visually-hidden">unread messages</span>
-										  	</span>
-										  	
-										</button>
+										<span id="reply_writer_${reply.boardWriter}" style="text-align: center;">${reply.boardWriter}</span>
 																				
 									</div>
 									<!--// 작성자 -->
@@ -71,27 +60,23 @@ function getAllReplies(boardNum) {
 								</div>
 							
 								<!-- 댓글 내용 -->	
-								<div class="my-1 d-flex flow">
+								<div class="reply_content_pnl" style="display: flex;">
 								
 									<div style="width:25px;">
 										&nbsp;
 									</div>
 									
 									<!-- 댓글 제어의 원활하게 하기 위해 div에 ID 할당 -->
-									<div id="boardContent_${reply.boardNum}">
-										${reply.boardContent}
+									<div id="boardContent_${reply.boardNum}" style="width:350px;">
+										<span>${reply.boardContent}</span>
 									</div>
 									
 								</div>
 								<!--// 댓글 내용 -->
 								
 								<!-- 댓글 작성일 -->
-								<div class="my-1 d-flex flow">
-								
-									<div style="width:25px;">
-										&nbsp;
-									</div>
-									
+								<div class="reply_date">
+						
 									<div>
 										${replyFormattedBoardDate}
 									</div>
@@ -198,85 +183,71 @@ function writeReply(boardNum, boardWriter) {
  						/* ------------------------------------------------------------------------------------------------------ */
  									 
 						// 개별 게시글 동적 패널
-						replyData = `<div id="reply_${reply.boardNum}" class="border-bottom border-dark-1 bg-light w-100 ps-4">
-										
-										<div class="d-flex flex-row py-2">
-										
-											<!-- 체크 박스 -->
-											<div class="d-flex align-items-center me-2">
-											
-												<input class="form-check-input" type="checkbox" id="reply_check_${reply.boardNum}">
-												
-											</div>
-											<!--// 체크 박스 -->
-											
-											<!-- 사람 아이콘 -->
-											<div class="me-2">
-											
-												<i class="bi bi-person-circle" style="font-size:3em; color:#ccc"></i>
-												
-											</div>
-											<!--// 사람 아이콘 -->
-											
-											<!-- 작성자 : bootstrap badge(뱃지) 적용 -->
-											<!-- 참고 : https://getbootstrap.com/docs/5.3/components/badge/#positioned -->
-											
-											<!-- 10.27 : 실제 댓글 작성자 파악을 위해 id 등록 -->
-											<div id="reply_actual_writer_${reply.boardNum}" class="d-flex align-items-center ms-1 mt-1">
-											
-												<!-- 10.27 : 실제 댓글 작성자 파악을 위해 id 등록 -->	
-												<button id="reply_writer_${reply.boardWriter}" type="button" class="btn btn-info position-relative">
-													
-													${reply.boardWriter}
-													
-												  	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-												    	작성자
-												    	<span class="visually-hidden">unread messages</span>
-												  	</span>
-												  	
-												</button>
-																						
-											</div>
-											<!--// 작성자 -->
-											
-										</div>
+						replyData =  `<div id="reply_${reply.boardNum}" class="reply_data" 
+								style="display: flex; align-items: center; background-color: rgba(0, 0, 0, .1); border-radius: 5px; justify-content: space-around; margin-top: 7px;">
+								
+								<div class="reply_data_pnl" style="display: flex;">
+								
+									<!-- 체크 박스 -->
+									<div class="reply_check_box">
 									
-										<!-- 댓글 내용 -->										
-										<div class="my-1 d-flex flow">
+										<input class="form-check-input" type="checkbox" id="reply_check_${reply.boardNum}">
 										
-											<div style="width:25px;">
-												&nbsp;
-											</div>
-											
-											<!-- 댓글 제어의 원활하게 하기 위해 div에 ID 할당 -->
-											<div id="boardContent_${reply.boardNum}">
-												${reply.boardContent}
-											</div>
-											
-										</div>
-										<!--// 댓글 내용 -->
+									</div>
+									<!--// 체크 박스 -->
+									
+									<!-- 사람 아이콘 -->
+									<!-- <div class="me-2">
+									
+										<i class="bi bi-person-circle" style="font-size:3em; color:#ccc"></i>
 										
-										<!-- 댓글 작성일 -->
-										<div class="my-1 d-flex flow">
-										
-											<div style="width:25px;">
-												&nbsp;
-											</div>
-											
-											<div>
-												${replyFormattedBoardDate}
-											</div>
-											
-										</div>
-										<!--// 댓글 작성일 -->
-										
-									</div>`;
+									</div> -->
+									<!--// 사람 아이콘 -->
+									
+									<!--  실제 댓글 작성자 파악을 위해 id 등록 -->
+									<div id="reply_actual_writer_${reply.boardNum}" class="board_writer_fld">
+									
+										<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->	
+										<span id="reply_writer_${reply.boardWriter}" style="text-align: center;">${reply.boardWriter}</span>
+																				
+									</div>
+									<!--// 작성자 -->
+									
+								</div>
+							
+								<!-- 댓글 내용 -->	
+								<div class="reply_content_pnl" style="display: flex;">
+								
+									<div style="width:25px;">
+										&nbsp;
+									</div>
+									
+									<!-- 댓글 제어의 원활하게 하기 위해 div에 ID 할당 -->
+									<div id="boardContent_${reply.boardNum}" style="width:350px;">
+										<span>${reply.boardContent}</span>
+									</div>
+									
+								</div>
+								<!--// 댓글 내용 -->
+								
+								<!-- 댓글 작성일 -->
+								<div class="reply_date">
+						
+									<div>
+										${replyFormattedBoardDate}
+									</div>
+									
+								</div>
+								<!--// 댓글 작성일 -->
+								
+							</div>`;
  												
 						/* ------------------------------------------------------------------------------------------------------ */
  						
  						
  						replyListPnl.innerHTML += replyData;	
- 						
+ 						replyWriteForm.innerHTML = "";
+						boardPass.innerHTML = "";
  					} // for
  					
  				 })	 				 
@@ -355,7 +326,7 @@ function getCheckedCheckboxes(replyCheckboxes, boardWriter) {
 			console.log("replyCheckbox.id : ", replyCheckId);
 			
 			// 실제 작성자와 비교 // [id^='reply_writer_']
-			let actualWriter = document.querySelectorAll(`#reply_actual_writer_${replyCheckId} button[id^=reply_writer_]`)[0].id;
+			let actualWriter = document.querySelectorAll(`#reply_actual_writer_${replyCheckId} span[id^=reply_writer_]`)[0].id;
 			
 			actualWrtier = actualWriter.substring('reply_writer_'.length);
 			
@@ -384,7 +355,6 @@ function getCheckedCheckboxes(replyCheckboxes, boardWriter) {
 	return resultCheckedIds;
 } //
 
-// 10.27
 // 댓글 수정 
 function updateReply(boardNum, boardWriter) {
 
@@ -411,39 +381,47 @@ function updateReply(boardNum, boardWriter) {
 			
 			console.log("boardContent : ", boardContent.innerText.trim());
 			// console.log("boardContent : ", boardContent.textContent.trim());
+			boardContent.style.width="150px";
+			
+			let boardDate = document.querySelector("div.reply_date");
+			console.log("date : " + boardDate.innerText); 
+			boardDate.style.width="0";
+			boardDate.style.visibility="hidden";
 			
 			// 댓글 수정을 위해 게시글 목록 해당 게시글 패널 하단에 입력 패널 생성 및 내용 삽입			
 			let replyPnl = document.getElementById("reply_" + checkedId);
 			
 			// 이전 상태 복원 대비 위해 이전 등록 모드 상태 보전 : "취소" 버튼 클릭시 이전 상태 복원
 			let oldReplyPnl = replyPnl.innerHTML;
-			
+
 			// 댓글 수정란 생성
-			let replyUpdateForm = `<div id="reply_write_update_pnl_${checkedId}" class="my-3">
-				 
+			let replyUpdateForm = `<div id="reply_write_update_pnl_${checkedId}" class="update_reply">
+				 					
 										<textarea id="reply_update_form_${checkedId}" 
 												  name="reply_update_form_${checkedId}" 
 												  class="form-control border border-primary"
-												  placeholder="댓글을  100자이내로 작성하십시오">${boardContent.innerText.trim()}</textarea>
+												  placeholder="댓글을  100자이내로 작성하십시오"
+												  style="width: 250px; height: 25px;">
+										</textarea>
 									   
 								   </div>`;
 			
 			replyPnl.innerHTML += replyUpdateForm;
 			
 			// 댓글 수정 내용 전송 버튼 생성 : 수정용 패쓰워드 입력란 포함
-			let replySubmitBtns = `<div id="reply_submit_btns_${checkedId}" class="d-flex justify-content-end my-2">
+			let replySubmitBtns = `<div id="reply_submit_btns_${checkedId}" style="display:flex; align-items: center; gap: 3px;">
 			
 									 <input type="text" id="board_pass_${checkedId}" 
 										    id="board_pass_${checkedId}" required 
-										    class="form-control form-control-sm h-100 w-25 me-3">
+										    style="width:100px;">
 								  	
 									 <button type="button" 
 								 	 	 id="reply_submit_btn_${checkedId}"
-								  		 class="btn btn-primary me-2">등록</button>
+								  		 style="border:none; background-color:rgba(0,0,0,.8); color:#fff; border-radius: 3px;">등록</button>
 									
 									 <button type="button" 
 								 	 	 id="reply_reset_btn_${checkedId}"
-								  		 class="btn btn-primary me-2">취소</button>
+								  		 style="border:none; background-color:rgba(0,0,0,.8); color:#fff; border-radius: 3px;">취소</button>
 								
 								  </div>`;
 						
@@ -457,11 +435,13 @@ function updateReply(boardNum, boardWriter) {
 						
 			replySubmitBtn.onclick = () => {
 				
-				alert("댓글 수정 전송")
+				// alert("댓글 수정 전송")
 				
 				let replyUpdateForm = document.getElementById(`reply_update_form_${checkedId}`);
 						
-				let replyActualWriter = document.querySelector(`#reply_actual_writer_${checkedId} button`).id;
+				let replyActualWriter = document.querySelector(`#reply_actual_writer_${checkedId} span`).id;
+				
+				console.log("작성자 :", replyActualWriter);
 				
 				replyActualWriter = replyActualWriter.substring("reply_writer_".length); // 실제 작성자 아이디 추출				
 				
@@ -493,7 +473,7 @@ function updateReply(boardNum, boardWriter) {
 					console.log("수정할 댓글 패쓰워드 : ", boardUpdatePass.value);
 					console.log("댓글 내용 : ", replyUpdateForm.value.trim());
 					
-					alert("최종점검");
+					alert("댓글 수정이 완료되었습니다.");
 					
 					if (boardUpdatePass.value.trim() == '') { 
 						
@@ -518,7 +498,6 @@ function updateReply(boardNum, boardWriter) {
 		 					let resData = response.data;
 		 					console.log("response.data : ", resData);
 		
-		 					// 10.26 (2)
 		 					// 전체 댓글 현황 리턴 확인
 		 					console.log("전체 댓글 수 : ", resData.length);
 		 					
@@ -534,77 +513,64 @@ function updateReply(boardNum, boardWriter) {
 		 						///////////////////////////////////////////////////////////////////////////////////////////////////////
 		 									 
 								// 개별 게시글 동적 패널
-								replyData = `<div id="reply_${reply.boardNum}" class="border-bottom border-dark-1 bg-light w-100 ps-4">
-												
-												<div class="d-flex flex-row py-2">
-												
-													<!-- 체크 박스 -->
-													<div class="d-flex align-items-center me-2">
-													
-														<input class="form-check-input" type="checkbox" id="reply_check_${reply.boardNum}">
-														
-													</div>
-													<!--// 체크 박스 -->
-													
-													<!-- 사람 아이콘 -->
-													<div class="me-2">
-													
-														<i class="bi bi-person-circle" style="font-size:3em; color:#ccc"></i>
-														
-													</div>
-													<!--// 사람 아이콘 -->
-													
-													
-													<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->
-													<div id="reply_actual_writer_${reply.boardNum}" class="d-flex align-items-center ms-1 mt-1">
-													
-														<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->	
-														<button id="reply_writer_${reply.boardWriter}" type="button" class="btn btn-info position-relative">
-															
-															${reply.boardWriter}
-															
-														  	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-														    	작성자
-														    	<span class="visually-hidden">unread messages</span>
-														  	</span>
-														  	
-														</button>
-																								
-													</div>
-													<!--// 작성자 -->
-													
-												</div>
-											
-												<!-- 댓글 내용 -->										
-												<div class="my-1 d-flex flow">
-												
-													<div style="width:25px;">
-														&nbsp;
-													</div>
-													
-													<!-- 10.27 : 댓글 제어의 원활하게 하기 위해 div에 ID 할당 -->
-													<div id="boardContent_${reply.boardNum}">
-														${reply.boardContent}
-													</div>
-													
-												</div>
-												<!--// 댓글 내용 -->
-												
-												<!-- 댓글 작성일 -->
-												<div class="my-1 d-flex flow">
-												
-													<div style="width:25px;">
-														&nbsp;
-													</div>
-													
-													<div>
-														${replyFormattedBoardDate}
-													</div>
-													
-												</div>
-												<!--// 댓글 작성일 -->
-												
-											</div>`;
+								replyData = `<div id="reply_${reply.boardNum}" class="reply_data" 
+								style="display: flex; align-items: center; background-color: rgba(0, 0, 0, .1); border-radius: 5px; justify-content: space-around; margin-top: 7px;">
+								
+								<div class="reply_data_pnl" style="display: flex;">
+								
+									<!-- 체크 박스 -->
+									<div class="reply_check_box">
+									
+										<input class="form-check-input" type="checkbox" id="reply_check_${reply.boardNum}">
+										
+									</div>
+									<!--// 체크 박스 -->
+									
+									<!-- 사람 아이콘 -->
+									<!-- <div class="me-2">
+									
+										<i class="bi bi-person-circle" style="font-size:3em; color:#ccc"></i>
+										
+									</div> -->
+									<!--// 사람 아이콘 -->
+									
+									<!--  실제 댓글 작성자 파악을 위해 id 등록 -->
+									<div id="reply_actual_writer_${reply.boardNum}" class="board_writer_fld">
+									
+										<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->	
+										<span id="reply_writer_${reply.boardWriter}" style="text-align: center;">${reply.boardWriter}</span>
+																				
+									</div>
+									<!--// 작성자 -->
+									
+								</div>
+							
+								<!-- 댓글 내용 -->	
+								<div class="reply_content_pnl" style="display: flex;">
+								
+									<div style="width:25px;">
+										&nbsp;
+									</div>
+									
+									<!-- 댓글 제어의 원활하게 하기 위해 div에 ID 할당 -->
+									<div id="boardContent_${reply.boardNum}" style="width:350px;">
+										<span>${reply.boardContent}</span>
+									</div>
+									
+								</div>
+								<!--// 댓글 내용 -->
+								
+								<!-- 댓글 작성일 -->
+								<div class="reply_date">
+						
+									<div>
+										${replyFormattedBoardDate}
+									</div>
+									
+								</div>
+								<!--// 댓글 작성일 -->
+								
+							</div>`;
 		 												
 								//////////////////////////////////////////////////////////////////////////////////////////////////
 		 						
@@ -644,9 +610,15 @@ function updateReply(boardNum, boardWriter) {
 			replyResetBtn.onclick = () => {
 				
 				alert("댓글 수정 취소");
-								
+				
 				// 원상 복구 : 원래의 일반 댓글 등록 모드로 변경				
+				boardContent.style.width="350px;";
+				console.log("boardContent: " + boardContent.style.width);
+				boardDate.style.width="150px;";
+				boardDate.style.visibility="visible;";
+				console.log("boardDate.style : " + boardDate.style);
 				replyPnl.innerHTML = oldReplyPnl;
+			
 			} //
 			
 			//////////////////////////////////////////////////////////////////////////////////////
@@ -691,7 +663,7 @@ function deleteReplies(boardNum, boardWriter) {
 			
 		} else {	
 			
-			alert("삭제 전송");
+			// alert("삭제 하시겠습니까?");
 		
 			for (checkedId of checkedIds) {
 				
@@ -723,6 +695,8 @@ function deleteReplies(boardNum, boardWriter) {
 					// 기존 패널 비우기(초기화)
 					replyListPnl.innerHTML = "";
 					
+					alert("삭제되었습니다.");
+					
 					let replyData = "";
 					
 					for (let reply of resData) {
@@ -733,80 +707,68 @@ function deleteReplies(boardNum, boardWriter) {
 						/* ------------------------------------------------------------------------------------------------------ */
 						
 						// 개별 게시글 동적 패널
-						replyData = `<div id="reply_${reply.boardNum}" class="border-bottom border-dark-1 bg-light w-100 ps-4">
-										
-										<div class="d-flex flex-row py-2">
-										
-											<!-- 체크 박스 -->
-											<div class="d-flex align-items-center me-2">
-											
-												<input class="form-check-input" type="checkbox" id="reply_check_${reply.boardNum}">
-												
-											</div>
-											<!--// 체크 박스 -->
-											
-											<!-- 사람 아이콘 -->
-											<div class="me-2">
-											
-												<i class="bi bi-person-circle" style="font-size:3em; color:#ccc"></i>
-												
-											</div>
-										
-											<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->
-											<div id="reply_actual_writer_${reply.boardNum}" class="d-flex align-items-center ms-1 mt-1">
-											
-												<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->	
-												<button id="reply_writer_${reply.boardWriter}" type="button" class="btn btn-info position-relative">
-													
-													${reply.boardWriter}
+						replyData = `<div id="reply_${reply.boardNum}" class="reply_data" 
+								style="display: flex; align-items: center; background-color: rgba(0, 0, 0, .1); border-radius: 5px; justify-content: space-around; margin-top: 7px;">
+								
+								<div class="reply_data_pnl" style="display: flex;">
+								
+									<!-- 체크 박스 -->
+									<div class="reply_check_box">
 									
-												  	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-												    	작성자
-												    	<span class="visually-hidden">unread messages</span>
-												  	</span>
-												  	
-												</button>
-																						
-											</div>
-											<!--// 작성자 -->
-											
-										</div>
+										<input class="form-check-input" type="checkbox" id="reply_check_${reply.boardNum}">
+										
+									</div>
+									<!--// 체크 박스 -->
 									
-										<!-- 댓글 내용 -->	
-										<div class="my-1 d-flex flow">
+									<!-- 사람 아이콘 -->
+									<!-- <div class="me-2">
+									
+										<i class="bi bi-person-circle" style="font-size:3em; color:#ccc"></i>
 										
-											<div style="width:25px;">
-												&nbsp;
-											</div>
-											
-											<!-- 댓글 제어의 원활하게 하기 위해 div에 ID 할당 -->
-											<div id="boardContent_${reply.boardNum}">
-												${reply.boardContent}
-											</div>
-											
-										</div>
-										<!--// 댓글 내용 -->
-										
-										<!-- 댓글 작성일 -->
-										<div class="my-1 d-flex flow">
-										
-											<div style="width:25px;">
-												&nbsp;
-											</div>
-											
-											<div>
-												${replyFormattedBoardDate}
-											</div>
-											
-										</div>
-										<!--// 댓글 작성일 -->
-										
-									</div>`;
+									</div> -->
+									<!--// 사람 아이콘 -->
+									
+									<!--  실제 댓글 작성자 파악을 위해 id 등록 -->
+									<div id="reply_actual_writer_${reply.boardNum}" class="board_writer_fld">
+									
+										<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->	
+										<span id="reply_writer_${reply.boardWriter}" style="text-align: center;">${reply.boardWriter}</span>
+																				
+									</div>
+									<!--// 작성자 -->
+									
+								</div>
+							
+								<!-- 댓글 내용 -->	
+								<div class="reply_content_pnl" style="display: flex;">
+								
+									<div style="width:25px;">
+										&nbsp;
+									</div>
+									
+									<!-- 댓글 제어의 원활하게 하기 위해 div에 ID 할당 -->
+									<div id="boardContent_${reply.boardNum}" style="width:350px;">
+										<span>${reply.boardContent}</span>
+									</div>
+									
+								</div>
+								<!--// 댓글 내용 -->
+								
+								<!-- 댓글 작성일 -->
+								<div class="reply_date">
+						
+									<div>
+										${replyFormattedBoardDate}
+									</div>
+									
+								</div>
+								<!--// 댓글 작성일 -->
+								
+							</div>`;
 									
 						/* ------------------------------------------------------------------------------------------------------ */
 						
 						replyListPnl.innerHTML += replyData;	
-						
 					} // for
 				
 				 })	 				 
@@ -879,7 +841,7 @@ function deleteBoard(boardNum, boardWriter) {
 			
 			alert("게시글 삭제를 취소하였습니다.");
 			
-		} // if (confirm("정말 삭제하시겠습니까?") == true	
+		} // 	
 		
 	} // boardDeleteBtn.onclick
 

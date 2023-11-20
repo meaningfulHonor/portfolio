@@ -40,15 +40,15 @@ public class HomeController {
 		log.info("index");
 		
 		List<BoardVO> qnas = boardService.selectBoardBySorting();
-		qnas.forEach(x -> {
-			log.info("qnas : " + x );
-		});
+		/*
+		 * qnas.forEach(x -> { log.info("qnas : " + x ); });
+		 */
 		model.addAttribute("qnas", qnas);
 
 		List<NoticeVO> notices = noticeService.selectNoticeBySorting();
-		notices.forEach(x -> {
-			log.info("notices : " + x );
-		});
+		/*
+		 * notices.forEach(x -> { log.info("notices : " + x ); });
+		 */
 		model.addAttribute("notices", notices);
 		
 		return "index";

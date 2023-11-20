@@ -3,7 +3,7 @@
 div.content_sect_pnl{
 	width: 780px;
 	margin: auto;
-	height: 80vh;
+	height: 90vh;
 	box-sizing: border-box;
 	margin: auto;
 	font-family: 'Noto Sans KR', sans-serif;
@@ -33,6 +33,7 @@ div.board_menu_pnl{
 	height: 25px;
 	display:flex;
 	justify-content: flex-end;
+	gap: 3px;
 }
 div.board_menu_pnl a{
 	padding: 3px;
@@ -89,6 +90,10 @@ div.view_board ul li a#board_file {
 
 div.reply_pnl{
 	width: 780px;
+}
+
+div.reply_pnl div#reply_list_pnl div.reply_data{
+	display: flex;
 }
 
 div.reply_pnl div#reply_write_update_pnl{

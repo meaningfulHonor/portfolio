@@ -33,6 +33,76 @@ public class BoardDeleteController {
 
 	@Autowired
 	ImageStoreService imageStoreService;
+	
+	@GetMapping("/deleteBoard.do")
+	public String deleteProc(@RequestParam("boardNum") int boardNum, Model model) {
+		log.info("deleteBoard.do : boardNum : {}", boardNum);
+		
+		String returnPath;
+		String movePage = "/board/view.do";
+		
+		String msg = "";
+		
+		BoardVO boardVO = boardService.selectBoard(boardNum);
+		
+		log.info("boardVO : " + boardVO);
+		
+		// 삭제할 삽입 이미지 점검
+		List<Integer> deleteImgList = boardService.getImageList(boardVO.getBoardContent().trim(),
+				"/board/image/");
+
+		for (int s : deleteImgList) {
+			log.info("--- 삭제할 업로드  이미지 : " + s);
+		} //
+		
+		// 삽입 이미지들 삭제
+		if (deleteImgList.size() > 0) { // 삭제할 이미지들이 있다면...
+			
+			for (int imageId : deleteImgList) {
+				
+				UploadFile uploadFile = imageService.load(imageId); // 삭제할 이미지 파일 경로 확보 :
+				// 삽입 이미지 삭제 삭제
+				log.info("삭제 메시지 : {}", fileUploadService.deleteImageFile(uploadFile.getFilePath()));
+				// 삽입 이미지 테이블(upload_file_tbl)에서도 해당 이미지 수록 내용 삭제
+				imageStoreService.deleteById(imageId);
+				
+			} // for
+			
+		} // if (deleteImgList.size() > 0)
+		
+		log.info("첨부 파일 삭제 직전 !");
+		
+		// 첨부 파일 삭제
+		if (boardVO.getBoardOriginalFile() != null) { // 첨부 파일이 있다면
+			
+			log.info("첨부 파일 존재 !");
+
+			// 기존 첨부 파일 삭제
+			msg += fileUploadService.deleteUploadFile(boardVO.getBoardFile());
+			log.info("파일 삭제 msg : {}", msg);
+
+		} // if 
+		
+		// 게시글 테이블(board_tbl)에서 게시글 자체를 삭제
+		if (boardService.deleteById(boardNum) == true) {
+			
+			msg = "게시글 삭제에 성공하였습니다.";
+			movePage = "/board/list.do"; // 게시글 목록으로 인동
+			
+		} else {
+			
+			msg = "게시글 삭제에 실패하였습니다.";
+			
+		} //
+		
+		model.addAttribute("errMsg", msg);
+
+		// 초기값은 메서드 초기에 언급된 지역 변수에서 변경(movePage)
+		model.addAttribute("movePage", movePage);
+		returnPath = "/error/error"; // 에러 페이지로 이동
+
+		return returnPath;
+	}
 
 	@GetMapping("/deleteProc.do")
 	public String updateProc(@RequestParam("boardNum") int boardNum, 

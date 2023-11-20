@@ -9,19 +9,12 @@
 <title>Q n A</title>
 
 <!-- bootstrap -->
-<!-- <link rel="stylesheet"
-	th:href="@{/bootstrap/5.3.1/css/bootstrap.min.css}" /> -->
 <script th:src="@{/bootstrap/5.3.1/js/bootstrap.min.js}" charset="UTF-8"></script>
 
 <!-- bootstrap icons -->
 <link rel="stylesheet" th:href="@{/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css}">
 
-<!-- include libraries(jQuery, bootstrap) -->
-<!-- 
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
- -->
 <script th:src="@{/jquery/3.7.1/jquery.min.js}"></script>
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
 
 <script>
@@ -64,12 +57,20 @@ window.onload = (e) => {
 				
 			} //
 		} //
-		
-		// 삭제할 게시글 아이디들 확인
-		for (deleteExpectedBoardId of deleteExpectedBoardIds) {
+		if (confirm("정말 삭제하시겠습니까?") == true) {
+			// 삭제할 게시글 아이디들 확인
+			for (deleteExpectedBoardId of deleteExpectedBoardIds) {
+				console.log("삭제할(선택된) 게시글 아이디 : ", deleteExpectedBoardId);
+				
+				let str = `/portfolio/board/deleteBoard.do`;
+				// location.href = str; 
+				
+			} // for
+		} else {
 			
-			console.log("삭제할(선택된) 게시글 아이디 : ", deleteExpectedBoardId);
-		} // for
+				alert("게시글 삭제를 취소하였습니다.");
+			
+		} //
 		
 	} //
 	

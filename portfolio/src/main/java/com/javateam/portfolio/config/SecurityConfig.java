@@ -60,7 +60,8 @@ public class SecurityConfig {
 			.and()
 				.authorizeRequests()
 				.antMatchers("/", "/index", "/css/**", "/webjars/**","/images/**", "/js/**", "/thumbnails/**").permitAll()
-				.antMatchers("/product/soccer", "/product/itemPage.do/**", "/product/replica", "/product/itemPage2.do/**").permitAll()
+				.antMatchers("/product/soccer", "/product/itemPage.do/**", "/product/replica", "/product/itemPage2.do/**",
+						"/product/searchProduct.do", "/product/searchReplica.do").permitAll()
 				.antMatchers("/swagger-resources/**", "/swagger/**", "/swagger-ui.html").permitAll()
 				.antMatchers("/member/hasFld/**", "/member/hasFldForUpdate/**").permitAll()
 				.antMatchers("/member/view.do").authenticated()
@@ -81,7 +82,7 @@ public class SecurityConfig {
 					 "/notice/searchList.do").permitAll()
 				.antMatchers("/notice/write.do", "/notice/writeProc.do", "/notice/update.do", "/notice/updateProc.do",
            			 "/notice/deleteProc.do").hasAuthority("ROLE_ADMIN")
-				.antMatchers("/board/replyWrite2.do").permitAll()
+				.antMatchers("/order/**").authenticated()
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()

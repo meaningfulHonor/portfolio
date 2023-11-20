@@ -18,6 +18,7 @@
 		
 		<!-- 인자 : [[${product}]]
 		 -->
+		 
         <div class="product">
             <div class="col product_img">
                 <img th:src="@{'/thumbnails/soccer/' + ${product.prdImg}}" alt="thumbnail">
@@ -40,10 +41,10 @@
                                 <td id="price"><span th:utext="|${#numbers.formatInteger(product.prdPrice, 3, 'COMMA')}원|"></span></td>
                             </tr>
                             <tr>
-                                <th id="th_qauntity">수량</th>
-                                <td id="qauntity">
+                                <th id="th_quantity">수량</th>
+                                <td id="quantity">
                                     <form action="#">
-                                        <select name="qauntity" id="select_qauntity" style="height: 30px;">
+                                        <select name="quantity" id="select_quantity" style="height: 30px;" onchange="getValue()">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -57,21 +58,61 @@
                                             <option value="11">11</option>
                                             <option value="12">12이상 단체</option>
                                         </select>
+                                        
+                                        
                                     </form>
                                 </td>
                             </tr>
+                            <tr>
+                            	<th id="th_total">주문 금액</th>
+                            	<td id="total_price_fld">
+                            		<input id="total_price" type="text" style="width: 200px; height: 30px;"> <span>원</span>
+                            	</td>
+                            </tr>
+                            
+                            <script type="text/javascript">
+                    
+                            	function getValue(){
+                                    var price = document.getElementById("price").innerText.split("원")[0].replace(",","");
+
+                                    var select = document.getElementById("select_quantity");
+                                	var selectValues = select.options[select.selectedIndex].value;
+                                	
+                                	var tt_price = document.getElementById("total_price");
+                                    var totalPrice = Number(price * selectValues);
+                                    
+                                    console.log("price: " + price + ", selectValues: " + selectValues);
+                                    console.log("tt: " + (price * selectValues).toLocaleString('ko-KR'));
+                                    
+                                    if(selectValues != "12"){
+                                    
+                                    	tt_price.value = totalPrice.toLocaleString('ko-KR');
+                                    	tt_price.style.textAlign = "right";
+                                    } else {
+                                    
+                                    	tt_price.value = "0";
+                                    	alert("단체주문은 QnA 게시판에 양식에 맞춰 기재해주세요.\n※ 양식은 공지사항 참조 ※");
+                                    }
+                                }
+                              </script>
                         </tbody>
                     </table>
-                    <p id="group_notice">※ 12개 초과의 단체주문은 12로 신청 후 QnA란에 남겨주세요.</p>
+                    <p id="group_notice">※ 12개 이상의 단체주문은 12로 신청 후 QnA란에 남겨주세요.</p>
                 </div>
             </div>
         </div>
 
         <div class="btn_fld">
-            <input type="button" class="btn cart" value="장바구니에 담기">
-            <input type="submit" class="btn order" value="바로 결제하기">
+        	[[${#authentication.name}]]
+            	<a th:href="@{'/order/cart/' + ${#authentication.name}}"><input type="button" class="btn cart" value="장바구니에 담기"></a>
+            	<input type="submit" class="btn order" value="바로 결제하기">
+            	<input type="hidden" name="orders[0].prdName" th:value="${product.prdName}">
+            	<input type="hidden" name="orders[0].prdCode" th:value="${product.prdCode}">
+            	<input type="hidden" name="orders[0].prdNum" th:value="${product.prdNum}">
+            	<input type="hidden" name="orders[0].prdPrice" th:value="${product.prdPrice}">
+        
         </div>
-
+        
     </div>
     <!-- // layout -->
 </body>
